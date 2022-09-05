@@ -11,16 +11,16 @@ public class EmployeeWageCalculation {
         Random ran = new Random();
         int attendance = ran.nextInt(3);
 
-        if (attendance == 1) {
-            System.out.println("Employee is Present for Full time");
-            System.out.println("Employee`s Daily Wage is => "+Wage_per_Hour * Full_Day_Hour);
-        } 
-        else if (attendance == 2) {
-            System.out.println("Employee is Present for Part time");
-            System.out.println("Employee`s Daily Wage is => "+Wage_per_Hour * Part_Time_Hour);
-        } 
-        else {
-            System.out.println("Employee is Absent");
+        switch (attendance) {
+            case 1 : {
+                System.out.println("Employee is Present for Full time");
+                System.out.println("Employee`s Daily Wage is => "+Wage_per_Hour * Full_Day_Hour);break;
+            } 
+            case 2 : {
+                System.out.println("Employee is Present for Part time");
+                System.out.println("Employee`s Daily Wage is => "+Wage_per_Hour * Part_Time_Hour);break;
+            } 
+            default : System.out.println("Employee is Absent");break;
         }
     }
   }
