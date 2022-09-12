@@ -3,39 +3,41 @@ package com.assignments.day3.EmployeeWage;
 import java.util.*;
 
 public class EmployeeWageCalculation {
-	    static int Wage_per_Hour = 20;
-	    static int Full_Day_Hour = 8;
-	    static int Part_Time_Hour = 4;
-	    static int Working_Day_per_Month = 20;
-	    static int Total_Working_Hour = 100;
-	    public static void main(String[] args) {
+	    public final static int perHourWage = 20;
+	    public final static int fullTime = 1;
+	    public final static int partTime = 2;
+	    static int workingDayPerMonth = 20;
+	    static int totalWorkingHour = 100;
+	    
+	    public static void calculateEmployeeWage() {
 	        System.out.println("Welcome to Employee Wage Computation Program");
-	        int totalWage = 0;
-	        int dayCount = 1;
-	        int workingHours = 0;
-	        while (dayCount <= Working_Day_per_Month && workingHours < Total_Working_Hour) {
-	            Random ran = new Random();
-	            int attendance = ran.nextInt(3);
-	            int employeeWage = 0;
+	        int totalEmployeeWorkHour = 0;
+	        int dayCount = 0;
+	        int workingHours;
+	        Random ran = new Random();
+	        
+	        while (dayCount < workingDayPerMonth && totalEmployeeWorkHour <= totalWorkingHour) {
+	        	dayCount++ ;
+	        	int attendance = ran.nextInt(3);
 	            switch (attendance) {
-	                case 1 : {
-	                    System.out.println("\nEmployee is Present for Full time.");
-	                    employeeWage = Wage_per_Hour * Full_Day_Hour;
-	                    workingHours += Full_Day_Hour;break;
+	                case fullTime : {
+	                    workingHours = 8;break;
 	                }
-	                case 2 : {
-	                    System.out.println("\nEmployee is Present for Part time.");
-	                    employeeWage = Wage_per_Hour * Part_Time_Hour;
-	                    workingHours += Part_Time_Hour;break;
+	                case partTime : {
+	                    workingHours = 4;break;
 	                }
-	                default : System.out.println("\nEmployee is Absent.");break;
+	                default : workingHours = 0;break;
 	            }
-	            totalWage += employeeWage;
-	            System.out.println("Employee Wage for day "+dayCount+" is: "+employeeWage);
-	            dayCount++;
+	            int wage = workingHours * perHourWage;
+	            System.out.println("Day "+dayCount+" Work Hour : "+workingHours+" & Wage : "+wage);
+	            totalEmployeeWorkHour += workingHours;
 	        }
-	        System.out.println("\nTotal Monthly Wage of Employee is: "+totalWage);
-	        System.out.println("Total Working Hours are: "+workingHours);
+	        int totalEmployeeWage = totalEmployeeWorkHour * perHourWage;
+	        System.out.println("\nTotal Monthly Wage of Employee is: "+totalEmployeeWage);
+	        System.out.println("Total Working Hours are: "+totalEmployeeWorkHour);
+	    }
+	    public static void main(String[] args) {
+	        calculateEmployeeWage();
 	    }
   }
 
